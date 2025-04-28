@@ -125,5 +125,16 @@ public class Bet {
             return 0.0;
         }
     }
+        /**
+     * Get a string representation of the bet
+     */
+    @Override
+    public String toString() {
+        String status = settled ? (won ? "Won" : "Lost") : "Pending";
+        return String.format("%s: %.2f on %s at %.1f:1 [%s]",
+                            timestamp, amount, horse.getName(), odds, status);
+    }
+}
+
 
 
