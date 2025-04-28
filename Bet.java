@@ -83,4 +83,47 @@ public class Bet {
     public double getPayout() {
         return payout;
     }
+       
+    /**
+     * Get the timestamp when the bet was placed
+     *
+     * @return The timestamp
+     */
+    public Date getTimestamp() {
+        return timestamp;
+    }
+   
+    /**
+     * Calculate the potential payout based on bet amount and odds
+     *
+     * @return The potential payout
+     */
+    public double getPotentialPayout() {
+        return amount * odds;
+    }
+   
+    /**
+     * Settle the bet with a winning horse
+     *
+     * @param winningHorse The horse that won the race
+     * @return The payout amount if this bet won, 0 otherwise
+     */
+    public double settle(Horse winningHorse) {
+        if (settled) {
+            return payout; // Already settled
+        }
+       
+        settled = true;
+       
+        if (horse.equals(winningHorse)) {
+            won = true;
+            payout = getPotentialPayout();
+            return payout;
+        } else {
+            won = false;
+            payout = 0.0;
+            return 0.0;
+        }
+    }
+
 
